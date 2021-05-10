@@ -1,0 +1,27 @@
+.navbar {
+    background-color: #e2dada;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    border: 1px solid #c2bebe;
+
+    .navbar-items {
+        display: flex;
+
+        
+    }
+}
+
+
+
+.link {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    &:hover {
+        background-color: #ece9e9;
+    }
+}

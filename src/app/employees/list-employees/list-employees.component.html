@@ -1,0 +1,70 @@
+<div class="mainContainer">
+    <div class="panel" *ngFor="let employee of employees">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{employee.name}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel-photo">
+                <img [src] = "employee.photoPath">
+            </div>
+            <div class="panel-details">
+                <div class="detail-row">
+                    <div class="detail-headings">
+                        Gender
+                    </div>
+                    <div class="detail-desc">
+                        : {{employee.gender}}
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-headings">
+                        Date of Birth
+                    </div>
+                    <div class="detail-desc">
+                        : {{employee.dateOfBirth | date}}
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-headings">
+                        Contact Preference
+                    </div>
+                    <div class="detail-desc">
+                        : {{employee.contactPreference}}
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-headings">
+                        Phone
+                    </div>
+                    <div class="detail-desc">
+                        : {{employee.phoneNumber}}
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-headings">
+                        Email
+                    </div>
+                    <div class="detail-desc">
+                        : {{employee.email}}
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-headings">
+                        Department
+                    </div>
+                    <div class="detail-desc">
+                        : {{employee.department}}
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-headings">
+                        isActive
+                    </div>
+                    <div class="detail-desc">
+                        : {{employee.isActive}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

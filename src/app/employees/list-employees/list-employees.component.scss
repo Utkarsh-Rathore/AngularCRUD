@@ -1,0 +1,51 @@
+@import '../../../styles/variable.scss';
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $panel-border-color;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    .panel-heading {
+        background-color: $panel-heading-color;
+        border-radius: 4px;
+
+        .panel-title {
+            color: white;
+            margin: 0;
+            font-size: 20px;
+            padding: 10px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    }
+    .panel-body {
+        display: flex;
+        .panel-photo {
+            margin-right: 40px;
+            img {
+                height: 100%;
+                width: auto;
+            }
+        }
+        .panel-details {
+            padding-top: 20px;
+            flex: 1;
+            .detail-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                .detail-headings {
+                    flex: 0.5;
+                }
+                .detail-desc {
+                    flex: 0.5;
+                }
+            }
+        }
+    }
+}
