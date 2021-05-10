@@ -1,78 +1,87 @@
-<form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)">
+<form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employee)">
   <div class="panel">
     <div class="panel-heading">
       <h3 class="panel-title">Create Employee</h3>
     </div>
     <div class="panel-body">
       <div class="form-container">
-        <label class="input-label" for="fullName">Full name</label>
-        <input id="fullName" name="full name" [(ngModel)]="fullName" type="text" class="input-text">
+        <label class="input-label" for="name">Full name<span class="required-icon">*</span></label>
+        <input id="name" required  name="name" [(ngModel)]="employee.name" type="text" class="input-text"
+         #name = "ngModel">
+         <p class="error-msg" *ngIf="name.invalid && name.touched">This field is required</p>
       </div>
       <div class="form-container">
-        <label class="input-label" for="email">Email</label>
-        <input id="email" name="email" [(ngModel)]="email" type="text" class="input-text">
+        <label class="input-label" for="email">Email<span class="required-icon" *ngIf = "contactPreference.value==='email'">*</span></label>
+        <input id="email" required email name="email" [(ngModel)]="employee.email" type="text" class="input-text"
+        #email= "ngModel">
+        <p class="error-msg" *ngIf="email.errors?.required && email.touched && contactPreference.value==='email'">Email is required</p>
+        <p class="error-msg" *ngIf="email.errors?.email && email.touched && contactPreference.value==='email'">Email is invalid</p>
       </div>
       <div class="form-container">
-        <label class="input-label" for="phoneNumber">Phone number</label>
-        <input id="phoneNumber" name="phone-number" [(ngModel)]="phoneNumber" type="number" class="input-text">
+        <label class="input-label" for="phoneNumber">Phone number <span class="required-icon" *ngIf="contactPreference.value==='phone-number'">*</span></label>
+        <input id="phoneNumber" #phoneNumber= "ngModel" name="phone-number" [(ngModel)]="employee.phoneNumber" type="number" class="input-text">
+        <p class="error-msg" *ngIf="phoneNumber.touched && phoneNumber.invalid && contactPreference.value==='phone-number'">phone number is required</p>
       </div>
       <div class="form-container">
-        <label class="input-label">Contact Preference</label>
+        <label class="input-label">Contact Preference <span class="required-icon">*</span></label>
         <div class="radio-input">
             <label>
-                <input type="radio" value="email" name="contactPreference" [(ngModel)]="contactPreference">
+                <input type="radio" value="email" name="contactPreference" required [(ngModel)]="employee.contactPreference"
+                #contactPreference = "ngModel">
                 Email
             </label>
             <label>
-                <input type="radio" value="phone-number" name="contactPreference" [(ngModel)]="contactPreference">
+                <input type="radio" value="phone-number" name="contactPreference" required [(ngModel)]="employee.contactPreference"
+                #contactPreference="ngModel">
                 Phone number
             </label>
         </div> 
+        <p class="error-msg" *ngIf="contactPreference.touched && contactPreference.invalid">Contact preference is required</p>
       </div>
       <div class="form-container">
-        <label class="input-label">Gender</label>
+        <label class="input-label">Gender <span class="required-icon">*</span></label>
         <div class="radio-input">
             <label>
-                <input type="radio" value="male" name="gender" [(ngModel)]="gender">
+                <input type="radio" required #gender = "ngModel" value="male" name="gender" [(ngModel)]="employee.gender">
                 Male
             </label>
             <label>
-                <input type="radio" value="female" name="gender" [(ngModel)]="gender">
+                <input type="radio" required #gender = "ngModel" value="female" name="gender" [(ngModel)]="employee.gender">
                 Female
             </label>
         </div> 
+        <p *ngIf = "gender.touched && gender.invalid">Gender is required</p>
       </div>
 
       <div class="form-container">
         <div class="checkbox-input">
             <label>
-                <input type="checkbox" name="isActive" [(ngModel)]="isActive">
+                <input type="checkbox" name="isActive" [(ngModel)]="employee.isActive">
                 Is Active
             </label>
         </div> 
       </div>
 
       <div class="form-container">
-          <label class="input-label" for="departments">Department</label>
+          <label class="input-label" for="departments">Department<span class="required-icon">*</span></label>
             <div class="input-label">
-                <select name="department" class="input-text" id="departments" placeholder="Select Department" [(ngModel)]=departments>
+                <select name="department" appSelectValidator required #department = "ngModel" class="input-text" id="departments" placeholder="Select Department" [(ngModel)]=employee.department>
+                  <option disabled [value]="-1">Select the department</option>
                     <option *ngFor = "let dept of departments" [value]="dept.id">
                         {{dept.name}}
                     </option>
                 </select>
             </div>
+            <p class="error-msg" *ngIf="department.touched && department.errors?.defaultSelected">Department is required</p>
       </div>
-      
+
       <div class="form-container">
         <label class="input-label" for="dateOfBirth">Date Of Birth</label>
-        <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" type="date" class="input-text">
+        <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="employee.dateOfBirth" type="date" class="input-text">
       </div>
     </div>
     <div class="panel-footer">
-      <button type="submit" class="cta-savebtn">Save</button>
+      <button type="submit" [disabled]="!employeeForm.valid" class="cta-savebtn">Save</button>
     </div>
   </div>
 </form>
-
-
-{{employeeForm.value | json}}

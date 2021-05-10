@@ -34,6 +34,10 @@
     color: white;
     border-radius: 4px;
     padding: 6px 15px;
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;    
+    }
 }
 
 .form-container {
@@ -65,4 +69,14 @@
     border: 1px solid #eeeeee;
     border-radius: 4px;
     padding: 10px;
+}
+
+.error-msg {
+    color: red;
+    font-size: 12px;
+}
+
+.required-icon {
+    color: red;
+    margin-left: 5px;
 }

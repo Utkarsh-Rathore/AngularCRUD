@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
+import { Employee } from '../models/employee.model';
 
 @Component({
   selector: 'app-create-employee',
@@ -9,11 +10,27 @@ import { Department } from '../models/department.model';
 })
 export class CreateEmployeeComponent implements OnInit {
 
-  departments : Department[] = [
-    {id:1 , name:"Help Desk"},
-    {id:2 , name:"HR"},
-    {id:3 , name:"IT"},
-    {id:4 , name:"Payroll"}
+  employee: Employee = 
+    {
+      id: null,
+      name: null,
+      gender: null,
+      email: null,
+      phoneNumber: null,
+      contactPreference: null,
+      dateOfBirth: null,
+      department: '-1',
+      isActive: null,
+    }
+
+
+
+
+  departments: Department[] = [
+    { id: 1, name: "Help Desk" },
+    { id: 2, name: "HR" },
+    { id: 3, name: "IT" },
+    { id: 4, name: "Payroll" }
   ];
 
   constructor() { }
@@ -21,8 +38,8 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveEmployee(empForm : NgForm) : void {
-    console.log(empForm.value)
+  saveEmployee(newEmployee : Employee): void {
+    console.log(newEmployee)
   }
 
 }
