@@ -1,4 +1,4 @@
-<form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employee)">
+<form #employeeForm="ngForm" (ngSubmit)="saveEmployee()">
   <div class="panel">
     <div class="panel-heading">
       <h3 class="panel-title">Create Employee</h3>
@@ -65,14 +65,14 @@
       <div class="form-container">
           <label class="input-label" for="departments">Department<span class="required-icon">*</span></label>
             <div class="input-label">
-                <select name="department" appSelectValidator required #department = "ngModel" class="input-text" id="departments" placeholder="Select Department" [(ngModel)]=employee.department>
-                  <option disabled [value]="-1">Select the department</option>
+                <select name="department" required #department = "ngModel" class="input-text" id="departments" placeholder="Select Department" [(ngModel)]=employee.department>
+                  <option disabled [ngValue]="null">Select the department</option>
                     <option *ngFor = "let dept of departments" [value]="dept.id">
                         {{dept.name}}
                     </option>
                 </select>
             </div>
-            <p class="error-msg" *ngIf="department.touched && department.errors?.defaultSelected">Department is required</p>
+            <p class="error-msg" *ngIf="department.touched && department.invalid">Department is required</p>
       </div>
 
       <div class="form-container">

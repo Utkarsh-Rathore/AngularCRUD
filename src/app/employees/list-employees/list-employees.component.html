@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             <div class="panel-photo">
-                <img [src] = "employee.photoPath">
+                <img src="../../../assets/images/employee-image.jpeg">
             </div>
             <div class="panel-details">
                 <div class="detail-row">
@@ -52,8 +52,13 @@
                     <div class="detail-headings">
                         Department
                     </div>
-                    <div class="detail-desc">
-                        : {{employee.department}}
+                    <div class="detail-desc" [ngSwitch]="employee.department">
+                        :
+                        <span *ngSwitchCase="1">Help Desk</span>
+                        <span *ngSwitchCase="2">HR</span>
+                        <span *ngSwitchCase="3">IT</span>
+                        <span *ngSwitchCase="4">Payroll</span>
+                        <span *ngSwitchDefault>N/A</span>
                     </div>
                 </div>
                 <div class="detail-row">
